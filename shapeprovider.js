@@ -79,4 +79,19 @@ ShapeProvider.prototype.update = function(shapeId, shapes, callback) {
     });
 };
 
+//delete shape
+ShapeProvider.prototype.delete = function(shapeId, callback) {
+        this.getCollection(function(error, shape_collection) {
+                if(error) callback(error);
+                else {
+                        shape_collection.remove(
+                                {_id: shape_collection.db.bson_serializer.ObjectID.createFromHexString(shapeId)},
+                                function(error, shape){
+                                        if(error) callback(error);
+                                        else callback(null, shape)
+                                });
+                        }
+        });
+};
+
 exports.ShapeProvider = ShapeProvider;
