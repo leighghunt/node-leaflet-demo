@@ -72,6 +72,7 @@ app.get('/shape/:id/edit', function(req, res) {
 app.post('/shape/:id/edit', function(req, res) {
         shapeProvider.update(req.param('_id'),{
                 title: req.param('title'),
+                wkt: req.param('wkt'),
                 name: req.param('name')
         }, function(error, docs) {
                 res.redirect('/')

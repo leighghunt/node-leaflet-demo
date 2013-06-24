@@ -12,6 +12,9 @@ block content
                 div
                     span.label Name :
                     input(type="text", name="name", id="editShapeName", value=shape.name)
+                div
+                    span.label WKT :
+                    input(type="text", name="wkt", id="editShapeWkt", value=shape.wkt)
                 div#editShapeSubmit
                     input(type="submit", value="Update")
         a(href="/")!= "Back to Shape List"
