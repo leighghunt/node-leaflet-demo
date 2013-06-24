@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    h1= title
+    #shapes
+        - each shape in shapes
+          div.shape
+            div.created_at= shape.created_at
+            div.title= shape.title 
+            div.name= shape.name
+        a(href="/shape/new")!= "Add New Shape"

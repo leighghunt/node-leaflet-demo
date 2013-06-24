@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1= title
+    div.newshape
+        form( method="post")
+            div
+                div
+                    span.label Title :
+                    input(type="text", name="title", id="editShapeTitle")
+                div
+                    span.label Name :
+                    input(type="text", name="name", id="editShapeName")
+                div#editShapeSubmit
+                    input(type="submit", value="Save")
+        a(href="/")!= "Back to Shape List"
