@@ -8,4 +8,10 @@ block content
             div.created_at= shape.created_at
             div.title= shape.title 
             div.name= shape.name
+                form( method="post", action="/shape/:id/delete") 
+                    input(name="_id", type="hidden", value=shape._id.toHexString()) 
+                    input(id="delete", value="X", type="submit")
+                form( method="get", action="/shape/:id/edit") 
+                    input(name="_id", type="hidden", value=shape._id.toHexString()) 
+                    input(id="edit", value="Edit", type="submit")
         a(href="/shape/new")!= "Add New Shape"

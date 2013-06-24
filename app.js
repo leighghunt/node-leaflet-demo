@@ -58,4 +58,39 @@ app.post('/shape/new', function(req, res){
     });
 });
 
+//update an shape
+app.get('/shape/:id/edit', function(req, res) {
+        shapeProvider.findById(req.param('_id'), function(error, shape) {
+                res.render('shape_edit',
+                { 
+                        shape: shape
+                });
+        });
+});
+
+//save updated shape
+app.post('/shape/:id/edit', function(req, res) {
+        shapeProvider.update(req.param('_id'),{
+                title: req.param('title'),
+                name: req.param('name')
+        }, function(error, docs) {
+                res.redirect('/')
+        });
+});
+
+//delete shape
+ShapeProvider.prototype.delete = function(shapeId, callback) {
+        this.getCollection(function(error, shape_collection) {
+                if(error) callback(error);
+                else {
+                        shape_collection.remove(
+                                {_id: shape_collection.db.bson_serializer.ObjectID.createFromHexString(shapeId)},
+                                function(error, shape){
+                                        if(error) callback(error);
+                                        else callback(null, shape)
+                                });
+                        }
+        });
+};
+
 app.listen(3000);

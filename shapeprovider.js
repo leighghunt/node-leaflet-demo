@@ -50,4 +50,33 @@ ShapeProvider.prototype.save = function(shapes, callback) {
     });
 };
 
+//find an shape by ID
+ShapeProvider.prototype.findById = function(id, callback) {
+    this.getCollection(function(error, shape_collection) {
+      if( error ) callback(error)
+      else {
+        shape_collection.findOne({_id: shape_collection.db.bson_serializer.ObjectID.createFromHexString(id)}, function(error, result) {
+          if( error ) callback(error)
+          else callback(null, result)
+        });
+      }
+    });
+};
+
+// update an shape
+ShapeProvider.prototype.update = function(shapeId, shapes, callback) {
+    this.getCollection(function(error, shape_collection) {
+      if( error ) callback(error);
+      else {
+        shape_collection.update(
+                                        {_id: shape_collection.db.bson_serializer.ObjectID.createFromHexString(shapeId)},
+                                        shapes,
+                                        function(error, shapes) {
+                                                if(error) callback(error);
+                                                else callback(null, shapes)       
+                                        });
+      }
+    });
+};
+
 exports.ShapeProvider = ShapeProvider;
