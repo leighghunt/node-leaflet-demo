@@ -8,6 +8,7 @@ block content
             div.created_at= shape.created_at
             div.title= shape.title 
             div.name= shape.name
+            div.wkt= shape.wkt
                 form( method="post", action="/shape/:id/delete") 
                     input(name="_id", type="hidden", value=shape._id.toHexString()) 
                     input(id="delete", value="X", type="submit")
