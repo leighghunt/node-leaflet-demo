@@ -52,7 +52,7 @@ app.get('/shape/new', function(req, res) {
 app.post('/shape/new', function(req, res){
     shapeProvider.save({
         title: req.param('title'),
-        wki: req.param('wkt'),
+        wkt: req.param('wkt'),
         name: req.param('name')
     }, function( error, docs) {
         res.redirect('/')
